@@ -1,0 +1,215 @@
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { resumeData } from "@/data/resume"
+import { Link } from "@tanstack/react-router"
+import {
+  IconMapPin,
+  IconBriefcase,
+  IconCode,
+  IconSparkles,
+  IconPlayerPlayFilled,
+} from "@tabler/icons-react"
+
+// Map specific URLs to details for hover previews
+const hoverPreviews: Record<string, { title: string; desc: string; img: string }> = {
+  "?demo=pdf-export": {
+    title: "Client-Side PDF Export Engine",
+    desc: "Renders dense geospatial layers locally to export high-DPI A3 print sheets without server overhead.",
+    img: "/placeholder.svg",
+  },
+  "?demo=offline-sync": {
+    title: "Offline-First PWA Map Cache",
+    desc: "Uses IndexedDB to cache gigabytes of map data, enabling surveyors to edit geometry in remote zones.",
+    img: "/placeholder.svg",
+  },
+  "?demo=georeference": {
+    title: "Deck.gl CAD Georeferencer",
+    desc: "Achieves sub-pixel alignment of floor plans over satellite basemaps using WebGL translation matrices.",
+    img: "/placeholder.svg",
+  },
+}
+
+// Helper to parse query parameters from the resume URL string
+const getSearchParams = (url: string) => {
+  if (url.startsWith("?")) {
+    const params = new URLSearchParams(url)
+    const result: Record<string, string> = {}
+    params.forEach((value, key) => {
+      result[key] = value
+    })
+    return result
+  }
+  return {}
+}
+
+interface InteractiveLinkProps {
+  text: string
+  url: string
+}
+
+function InteractiveLink({ text, url }: InteractiveLinkProps) {
+  const searchParams = getSearchParams(url)
+  const preview = hoverPreviews[url]
+
+  return (
+    <span className="relative group/link inline-block">
+      <Link
+        to="/"
+        search={searchParams}
+        className="relative inline-flex items-center gap-1 font-semibold text-primary underline underline-offset-4 decoration-primary/30 transition-all duration-200 hover:text-blue-500 hover:decoration-blue-500 cursor-pointer"
+      >
+        <span>{text}</span>
+        <IconPlayerPlayFilled className="h-2.5 w-2.5 text-primary group-hover/link:text-blue-500 transition-colors" />
+      </Link>
+
+      {preview && (
+        <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-3 w-80 -translate-x-1/2 scale-95 opacity-0 rounded-2xl border border-border/40 bg-card/95 p-3 shadow-2xl backdrop-blur-xl transition-all duration-300 group-hover/link:scale-100 group-hover/link:opacity-100 group-hover/link:pointer-events-auto flex flex-col gap-2.5">
+          <span className="relative block overflow-hidden rounded-lg border border-border/40 bg-muted/50 h-36">
+            <img
+              src={preview.img}
+              alt={preview.title}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover/link:scale-105"
+            />
+            <span className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+          </span>
+          <span className="flex flex-col gap-1 text-left">
+            <span className="text-sm font-semibold tracking-tight text-foreground">
+              {preview.title}
+            </span>
+            <span className="text-xs text-muted-foreground leading-relaxed">
+              {preview.desc}
+            </span>
+          </span>
+          <span className="pt-2 flex items-center justify-between border-t border-border/40 text-[10px] font-semibold text-primary">
+            <span className="uppercase tracking-wider">Interactive Demo</span>
+            <span className="flex items-center gap-0.5">
+              Launch demo <IconPlayerPlayFilled className="h-2 w-2" />
+            </span>
+          </span>
+        </span>
+      )}
+    </span>
+  )
+}
+
+export function Timeline() {
+  const getTimelineIcon = (company: string) => {
+    if (company.includes("Map.ir")) {
+      return <IconMapPin className="h-4.5 w-4.5 text-primary" />
+    }
+    if (company.includes("Freelance")) {
+      return <IconCode className="h-4.5 w-4.5 text-blue-500" />
+    }
+    return <IconBriefcase className="h-4.5 w-4.5 text-muted-foreground" />
+  }
+
+  return (
+    <section className="relative w-full max-w-5xl mx-auto px-6 py-16 md:py-24">
+      {/* Heading */}
+      <div className="text-center md:text-left mb-12 space-y-3">
+        <h2 className="bg-linear-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-3xl font-bold tracking-tight md:text-4xl">
+          Professional Experience
+        </h2>
+        <p className="text-sm text-muted-foreground max-w-2xl leading-relaxed">
+          A dynamic timeline showcasing technical contributions and real-world architectures. Hover over highlighted items for feature previews, or click them to launch sandbox states.
+        </p>
+      </div>
+
+      {/* Callout System */}
+      <div className="mb-16 border border-primary/20 bg-primary/5 rounded-3xl p-6 backdrop-blur-md flex flex-col md:flex-row items-center gap-6 text-center md:text-left transition-all hover:border-primary/40">
+        <div className="p-3.5 rounded-2xl bg-primary/10 text-primary">
+          <IconSparkles className="h-6 w-6" />
+        </div>
+        <div className="flex-1 space-y-1">
+          <h4 className="text-sm font-semibold tracking-tight text-foreground">
+            Interactive GIS Sandbox Available
+          </h4>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            "See my demo WebGIS Sandbox PWA. Some of the resume claims are proven there!"
+          </p>
+        </div>
+        <Button
+          size="sm"
+          className="cursor-pointer bg-primary text-primary-foreground font-medium transition-all hover:bg-primary/95"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" })
+          }}
+        >
+          Open PWA Sandbox
+        </Button>
+      </div>
+
+      {/* Timeline Container */}
+      <div className="relative pl-4 md:pl-6">
+        {/* Glowing Gradient Timeline vertical line */}
+        <div className="absolute left-[21px] md:left-[29px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-primary via-blue-500 to-border/30" />
+
+        {/* Timeline Items */}
+        <div className="space-y-12">
+          {resumeData.work.map((job) => (
+            <div key={job.company} className="relative pl-12 md:pl-16 group">
+              {/* Timeline Dot */}
+              <div className="absolute left-[3px] md:left-[11px] top-2 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-border/50 bg-card/85 shadow-md backdrop-blur-md transition-all duration-300 group-hover:border-primary/50 group-hover:shadow-primary/20 group-hover:scale-110">
+                {getTimelineIcon(job.company)}
+              </div>
+
+              {/* Card Container with Frosted Glass Aesthetic */}
+              <Card className="border-border/40 bg-card/60 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-border/80 hover:shadow-2xl">
+                <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between pb-3">
+                  <div className="space-y-1.5">
+                    <CardTitle className="text-lg md:text-xl font-bold tracking-tight text-foreground leading-snug">
+                      {job.position}
+                    </CardTitle>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+                      <span className="font-semibold text-foreground/80">{job.company}</span>
+                      <span>•</span>
+                      <span className="flex items-center gap-1">
+                        <IconMapPin className="h-3.5 w-3.5" /> {job.location}
+                      </span>
+                    </div>
+                  </div>
+                  <Badge
+                    variant="secondary"
+                    className="w-fit px-3 py-1 font-semibold text-xs text-primary bg-primary/10 border-primary/20"
+                  >
+                    {job.startDate} – {job.endDate}
+                  </Badge>
+                </CardHeader>
+                <CardContent className="pt-2">
+                  <ul className="space-y-4 list-none pl-0">
+                    {job.highlights.map((highlight, idx) => (
+                      <li
+                        key={idx}
+                        className="relative pl-6 text-sm text-muted-foreground leading-relaxed"
+                      >
+                        {/* Custom bullet dot */}
+                        <span className="absolute left-0 top-[9px] h-1.5 w-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors" />
+
+                        <span>
+                          {highlight.map((segment, segIdx) => {
+                            if (typeof segment === "string") {
+                              return <span key={segIdx}>{segment}</span>
+                            } else {
+                              return (
+                                <InteractiveLink
+                                  key={segIdx}
+                                  text={segment.text}
+                                  url={segment.url}
+                                />
+                              )
+                            }
+                          })}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
