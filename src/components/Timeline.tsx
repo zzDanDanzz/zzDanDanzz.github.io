@@ -1,13 +1,11 @@
 import * as React from "react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { resumeData } from "@/data/resume"
 import { Link } from "@tanstack/react-router"
 import {
   IconMapPin,
   IconCode,
-  IconSparkles,
   IconPlayerPlayFilled,
   IconLanguage,
 } from "@tabler/icons-react"
@@ -114,36 +112,6 @@ export function Timeline() {
         <h2 className="bg-linear-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-3xl font-bold tracking-tight md:text-4xl">
           Professional Experience
         </h2>
-        <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          A dynamic timeline showcasing technical contributions and real-world
-          architectures. Hover over highlighted items for feature previews, or
-          click them to launch sandbox states.
-        </p>
-      </div>
-
-      {/* Callout System */}
-      <div className="mb-16 flex flex-col items-center gap-6 rounded-3xl border border-primary/20 bg-primary/5 p-6 text-center backdrop-blur-md transition-all hover:border-primary/40 md:flex-row md:text-left">
-        <div className="rounded-2xl bg-primary/10 p-3.5 text-primary">
-          <IconSparkles className="h-6 w-6" />
-        </div>
-        <div className="flex-1 space-y-1">
-          <h4 className="text-sm font-semibold tracking-tight text-foreground">
-            Interactive GIS Sandbox Available
-          </h4>
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            "See my demo WebGIS Sandbox PWA. Some of the resume claims are
-            proven there!"
-          </p>
-        </div>
-        <Button
-          size="sm"
-          className="cursor-pointer bg-primary font-medium text-primary-foreground transition-all hover:bg-primary/95"
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          }}
-        >
-          Open PWA Sandbox
-        </Button>
       </div>
 
       {/* Timeline Container */}

@@ -111,9 +111,7 @@ export function Hero() {
                 Interactive Geospatial Playground
               </h3>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                Explore custom visualization engines, tile map rendering
-                benchmarks, and experimental data layers. Optimized for mobile
-                and desktop WebGIS analysis.
+                A walk through the Safavid Era
               </p>
             </div>
 
