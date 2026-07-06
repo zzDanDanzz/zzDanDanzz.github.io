@@ -152,75 +152,77 @@ export function Timeline() {
       </div>
 
       {/* Timeline Container */}
-      <div className="relative pl-4 md:pl-6">
-        {/* Glowing Gradient Timeline vertical line */}
-        <div className="absolute top-6 bottom-6 left-5 w-0.5 bg-linear-to-b from-primary via-blue-500 to-border/30 md:left-8.5" />
+      <div>
+        <div className="relative">
+          {/* Glowing Gradient Timeline vertical line */}
+          <div className="absolute top-6 bottom-6 left-5 w-0.5 bg-linear-to-b from-primary via-blue-500 to-border/30 md:left-8.5" />
 
-        {/* Timeline Items */}
-        <div className="space-y-12">
-          {resumeData.work.map((job) => (
-            <div key={job.company} className="group relative pl-12 md:pl-16">
-              {/* Timeline Dot */}
-              <div className="absolute top-2 left-0.75 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-border/50 bg-card/85 shadow-md backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:border-primary/50 group-hover:shadow-primary/20 md:left-2.75 md:h-12 md:w-12">
-                {iconMap[job.iconKey] || iconMap["default"]}
-              </div>
+          {/* Timeline Items */}
+          <div className="space-y-12">
+            {resumeData.work.map((job) => (
+              <div key={job.company} className="group relative pl-20">
+                {/* Timeline Dot */}
+                <div className="absolute top-2 left-0.75 z-10 flex h-9 w-9 transform-gpu items-center justify-center rounded-full border border-border/50 bg-card/85 shadow-md backdrop-blur-md transition-[transform,border-color,box-shadow] duration-300 group-hover:scale-110 group-hover:border-primary/50 group-hover:shadow-primary/20 md:left-2.75 md:h-12 md:w-12">
+                  {iconMap[job.iconKey] || iconMap["default"]}
+                </div>
 
-              {/* Card Container with Frosted Glass Aesthetic */}
-              <Card className="border-border/40 bg-card/60 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-border/80 hover:shadow-2xl">
-                <CardHeader className="flex flex-col gap-3 pb-3 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="space-y-1.5">
-                    <CardTitle className="text-lg leading-snug font-bold tracking-tight text-foreground md:text-xl">
-                      {job.position}
-                    </CardTitle>
-                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
-                      <span className="font-semibold text-foreground/80">
-                        {job.company}
-                      </span>
-                      <span>•</span>
-                      <span className="flex items-center gap-1">
-                        <IconMapPin className="h-3.5 w-3.5" /> {job.location}
-                      </span>
-                    </div>
-                  </div>
-                  <Badge
-                    variant="secondary"
-                    className="w-fit border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
-                  >
-                    {job.startDate} – {job.endDate}
-                  </Badge>
-                </CardHeader>
-                <CardContent className="pt-2">
-                  <ul className="list-none space-y-4 pl-0">
-                    {job.highlights.map((highlight, idx) => (
-                      <li
-                        key={idx}
-                        className="relative pl-6 text-sm leading-relaxed text-muted-foreground"
-                      >
-                        {/* Custom bullet dot */}
-                        <span className="absolute top-2.25 left-0 h-1.5 w-1.5 rounded-full bg-primary/40 transition-colors group-hover:bg-primary" />
-
-                        <span>
-                          {highlight.map((segment, segIdx) => {
-                            if (typeof segment === "string") {
-                              return <span key={segIdx}>{segment}</span>
-                            } else {
-                              return (
-                                <InteractiveLink
-                                  key={segIdx}
-                                  text={segment.text}
-                                  url={segment.url}
-                                />
-                              )
-                            }
-                          })}
+                {/* Card Container with Frosted Glass Aesthetic */}
+                <Card className="border-border/40 bg-card/60 shadow-xl backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-border/80 hover:shadow-2xl">
+                  <CardHeader className="flex flex-col gap-3 pb-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="space-y-1.5">
+                      <CardTitle className="text-lg leading-snug font-bold tracking-tight text-foreground md:text-xl">
+                        {job.position}
+                      </CardTitle>
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+                        <span className="font-semibold text-foreground/80">
+                          {job.company}
                         </span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
-          ))}
+                        <span>•</span>
+                        <span className="flex items-center gap-1">
+                          <IconMapPin className="h-3.5 w-3.5" /> {job.location}
+                        </span>
+                      </div>
+                    </div>
+                    <Badge
+                      variant="secondary"
+                      className="w-fit border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
+                    >
+                      {job.startDate} – {job.endDate}
+                    </Badge>
+                  </CardHeader>
+                  <CardContent className="pt-2">
+                    <ul className="list-none space-y-4 pl-0">
+                      {job.highlights.map((highlight, idx) => (
+                        <li
+                          key={idx}
+                          className="relative pl-6 text-sm leading-relaxed text-muted-foreground"
+                        >
+                          {/* Custom bullet dot */}
+                          <span className="absolute top-2.25 left-0 h-1.5 w-1.5 rounded-full bg-primary/40 transition-colors group-hover:bg-primary" />
+
+                          <span>
+                            {highlight.map((segment, segIdx) => {
+                              if (typeof segment === "string") {
+                                return <span key={segIdx}>{segment}</span>
+                              } else {
+                                return (
+                                  <InteractiveLink
+                                    key={segIdx}
+                                    text={segment.text}
+                                    url={segment.url}
+                                  />
+                                )
+                              }
+                            })}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -24,7 +24,7 @@ export function Hero() {
         <div className="flex w-full max-w-5xl flex-col items-stretch gap-8 md:flex-row md:gap-12 lg:gap-16">
           {/* 3. Left Column - Profile (Enclosed in a Card) */}
           <div className="flex flex-1">
-            <Card className="flex w-full flex-col justify-between overflow-hidden border-border/40 bg-card/60 shadow-xl backdrop-blur-xl transition-all duration-300 hover:border-border/80 hover:shadow-2xl">
+            <Card className="flex w-full flex-col justify-between overflow-hidden border-border/40 bg-card/60 shadow-xl backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-border/80 hover:shadow-2xl transform-gpu">
               <CardContent className="flex h-full flex-col items-center justify-between gap-6 p-6 text-center md:items-start md:p-8 md:text-left">
                 {/* Avatar & Text section */}
                 <div className="flex w-full flex-col items-center gap-6 md:items-start">
