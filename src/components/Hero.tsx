@@ -15,7 +15,7 @@ export function Hero() {
       {/* 1. Header */}
       <header className="sticky top-0 z-50 flex w-full items-center justify-between border-b border-border/20 bg-background/80 px-6 py-6 backdrop-blur-md md:px-12 md:py-8">
         <span className="text-lg font-semibold tracking-tight transition-opacity select-none hover:opacity-80">
-          lastname.com
+          zahmatkesh.com
         </span>
       </header>
 
@@ -24,7 +24,7 @@ export function Hero() {
         <div className="flex w-full max-w-5xl flex-col items-stretch gap-8 md:flex-row md:gap-12 lg:gap-16">
           {/* 3. Left Column - Profile (Enclosed in a Card) */}
           <div className="flex flex-1">
-            <Card className="flex w-full flex-col justify-between overflow-hidden border-border/40 bg-card/60 shadow-xl backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-border/80 hover:shadow-2xl transform-gpu">
+            <Card className="flex w-full transform-gpu flex-col justify-between overflow-hidden border-border/40 bg-card/60 shadow-xl backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-border/80 hover:shadow-2xl">
               <CardContent className="flex h-full flex-col items-center justify-between gap-6 p-6 text-center md:items-start md:p-8 md:text-left">
                 {/* Avatar & Text section */}
                 <div className="flex w-full flex-col items-center gap-6 md:items-start">
@@ -34,10 +34,10 @@ export function Hero() {
                     <Avatar className="h-32 w-32 border-2 border-background shadow-lg transition-transform duration-300 group-hover:scale-[1.02] md:h-40 md:w-40">
                       <AvatarImage
                         src="https://github.com/zzdandanzz.png?size=400"
-                        alt="Profile avatar"
+                        alt="Daniel Zahmatkesh"
                       />
                       <AvatarFallback className="bg-linear-to-br from-indigo-500 to-purple-600 text-2xl font-bold text-white">
-                        DL
+                        DZ
                       </AvatarFallback>
                     </Avatar>
                   </div>
@@ -46,18 +46,15 @@ export function Hero() {
                   <div className="w-full space-y-3">
                     <div className="space-y-1">
                       <h2 className="bg-linear-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-3xl font-bold tracking-tight">
-                        Daniel Lastname
+                        Daniel Zahmatkesh
                       </h2>
                       <p className="text-sm font-semibold tracking-widest text-primary/90 uppercase">
-                        WebGIS & Frontend Engineer
+                        Lead Front-End Developer
                       </p>
                     </div>
-                    <p className="mx-auto md:mx-0 max-w-md text-sm leading-relaxed text-muted-foreground">
-                      Hi, I&apos;m Daniel. I build high-performance WebGIS
-                      platforms and interactive spatial applications.
-                      Specializing in rendering dense geospatial datasets in
-                      real-time, I bridge the gap between complex GIS analysis
-                      and intuitive, modern web interfaces.
+                    <p className="mx-auto max-w-md text-sm leading-relaxed text-muted-foreground md:mx-0">
+                      Specializing in high-performance React applications,
+                      complex state management, and geospatial web platforms.
                     </p>
                   </div>
                 </div>
@@ -65,7 +62,7 @@ export function Hero() {
                 {/* 4. Social Links */}
                 <div className="flex w-full justify-center gap-4 border-t border-border/40 pt-4 md:justify-start">
                   <a
-                    href="mailto:daniel@example.com"
+                    href="mailto:contact@zahmatkesh.com"
                     className="rounded-full bg-secondary p-2.5 text-secondary-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
                     aria-label="Email"
                     title="Email"
@@ -73,7 +70,7 @@ export function Hero() {
                     <IconMail className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://t.me/example"
+                    href="https://t.me/DanielZahmatkesh"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-full bg-secondary p-2.5 text-secondary-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
@@ -83,7 +80,7 @@ export function Hero() {
                     <IconBrandTelegram className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://github.com/zzdandanzz"
+                    href="https://github.com/zzDanDanzz/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-full bg-secondary p-2.5 text-secondary-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
@@ -93,7 +90,7 @@ export function Hero() {
                     <IconBrandGithub className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://linkedin.com/in/example"
+                    href="https://www.linkedin.com/in/daniel-zahmatkesh-185288240/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="rounded-full bg-secondary p-2.5 text-secondary-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
