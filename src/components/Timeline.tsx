@@ -9,6 +9,11 @@ import {
   IconPlayerPlayFilled,
   IconLanguage,
 } from "@tabler/icons-react"
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
 
 const hoverPreviews: Record<
   string,
@@ -54,43 +59,50 @@ function InteractiveLink({ text, url }: InteractiveLinkProps) {
   const preview = hoverPreviews[url]
 
   return (
-    <span className="group/link relative inline-block">
-      <Link
-        to="/"
-        search={searchParams}
-        className="relative inline-flex cursor-pointer items-center gap-1 font-semibold text-primary underline decoration-primary/30 underline-offset-4 transition-all duration-200 hover:text-blue-500 hover:decoration-blue-500"
-      >
-        <span>{text}</span>
-        <IconPlayerPlayFilled className="h-2.5 w-2.5 text-primary transition-colors group-hover/link:text-blue-500" />
-      </Link>
+    <HoverCard openDelay={200} closeDelay={200}>
+      <HoverCardTrigger asChild>
+        <Link
+          to="/"
+          search={searchParams}
+          className="group/trigger inline-flex cursor-pointer items-center gap-1 font-semibold text-primary underline decoration-primary/30 underline-offset-4 transition-all duration-200 hover:text-blue-500 hover:decoration-blue-500"
+        >
+          <span>{text}</span>
+          <IconPlayerPlayFilled className="h-2.5 w-2.5 text-primary transition-colors group-hover/trigger:text-blue-500" />
+        </Link>
+      </HoverCardTrigger>
 
-      {preview && (
-        <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-3 flex w-80 -translate-x-1/2 scale-95 flex-col gap-2.5 rounded-2xl border border-border/40 bg-card/95 p-3 opacity-0 shadow-2xl backdrop-blur-xl transition-all duration-300 group-hover/link:pointer-events-auto group-hover/link:scale-100 group-hover/link:opacity-100">
-          <span className="relative block h-36 overflow-hidden rounded-lg border border-border/40 bg-muted/50">
-            <img
-              src={preview.img}
-              alt={preview.title}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover/link:scale-105"
-            />
-            <span className="absolute inset-0 bg-linear-to-t from-background/90 via-transparent to-transparent" />
+      <HoverCardContent
+        side="top"
+        align="center"
+        sideOffset={12}
+        className="w-80 flex-col gap-2.5 rounded-2xl border border-border/40 bg-card/95 p-3 shadow-2xl backdrop-blur-xl"
+      >
+        <div className="group/image relative mb-2 block h-36 overflow-hidden rounded-lg border border-border/40 bg-muted/50">
+          <img
+            src={preview.img}
+            alt={preview.title}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover/image:scale-105"
+          />
+          <span className="absolute inset-0 bg-linear-to-t from-background/90 via-transparent to-transparent" />
+        </div>
+
+        <div className="mb-2 flex flex-col gap-1 text-left">
+          <span className="text-sm font-semibold tracking-tight text-foreground">
+            {preview.title}
           </span>
-          <span className="flex flex-col gap-1 text-left">
-            <span className="text-sm font-semibold tracking-tight text-foreground">
-              {preview.title}
-            </span>
-            <span className="text-xs leading-relaxed text-muted-foreground">
-              {preview.desc}
-            </span>
+          <span className="text-xs leading-relaxed text-muted-foreground">
+            {preview.desc}
           </span>
-          <span className="flex items-center justify-between border-t border-border/40 pt-2 text-[10px] font-semibold text-primary">
-            <span className="tracking-wider uppercase">Interactive Demo</span>
-            <span className="flex items-center gap-0.5">
-              Launch demo <IconPlayerPlayFilled className="h-2 w-2" />
-            </span>
+        </div>
+
+        <div className="flex items-center justify-between border-t border-border/40 pt-2 text-[10px] font-semibold text-primary">
+          <span className="tracking-wider uppercase">Interactive Demo</span>
+          <span className="flex items-center gap-0.5">
+            Launch demo <IconPlayerPlayFilled className="h-2 w-2" />
           </span>
-        </span>
-      )}
-    </span>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
   )
 }
 
