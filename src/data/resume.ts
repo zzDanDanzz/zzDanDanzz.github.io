@@ -18,7 +18,7 @@ export interface WorkExperience {
     position: string;
     startDate: string;
     endDate: string;
-    iconKey: 'map-pin' | 'code' | 'language' | 'default';
+    iconKey: 'map-pin' | 'code' | 'language';
     highlights: HighlightSegment[][];
 }
 

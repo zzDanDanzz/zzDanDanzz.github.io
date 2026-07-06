@@ -6,7 +6,6 @@ import { resumeData } from "@/data/resume"
 import { Link } from "@tanstack/react-router"
 import {
   IconMapPin,
-  IconBriefcase,
   IconCode,
   IconSparkles,
   IconPlayerPlayFilled,
@@ -98,16 +97,13 @@ function InteractiveLink({ text, url }: InteractiveLinkProps) {
 }
 
 export function Timeline() {
-  const iconMap: Record<string, React.ReactNode> = {
+  const iconMap: Record<"map-pin" | "code" | "language", React.ReactNode> = {
     "map-pin": (
       <IconMapPin className="h-4.5 w-4.5 text-primary md:h-6 md:w-6" />
     ),
     code: <IconCode className="h-4.5 w-4.5 text-primary md:h-6 md:w-6" />,
     language: (
       <IconLanguage className="h-4.5 w-4.5 text-primary md:h-6 md:w-6" />
-    ),
-    default: (
-      <IconBriefcase className="h-4.5 w-4.5 text-primary md:h-6 md:w-6" />
     ),
   }
 
@@ -162,7 +158,7 @@ export function Timeline() {
               <div key={job.company} className="group relative md:pl-20">
                 {/* Timeline Dot */}
                 <div className="absolute top-2 left-0.75 z-10 hidden h-9 w-9 transform-gpu items-center justify-center rounded-full border border-border/50 bg-card/85 shadow-md backdrop-blur-md transition-[transform,border-color,box-shadow] duration-300 group-hover:scale-110 group-hover:border-primary/50 group-hover:shadow-primary/20 md:left-2.75 md:flex md:h-12 md:w-12">
-                  {iconMap[job.iconKey] || iconMap["default"]}
+                  {iconMap[job.iconKey]}
                 </div>
 
                 {/* Card Container with Frosted Glass Aesthetic */}
