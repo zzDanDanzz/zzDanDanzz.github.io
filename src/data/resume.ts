@@ -18,6 +18,7 @@ export interface WorkExperience {
     position: string;
     startDate: string;
     endDate: string;
+    iconKey: 'map-pin' | 'code' | 'language' | 'default';
     highlights: HighlightSegment[][];
 }
 
@@ -85,6 +86,7 @@ export const resumeData: ResumeData = {
             position: "Lead Front-End Developer (Promoted from Front-End Developer)",
             startDate: "November 2022",
             endDate: "March 2026",
+            iconKey: 'map-pin',
             highlights: [
                 [
                     "National Postal Infrastructure (B2G): Assumed full ownership of the National Post Company's public portal (Sina) and internal platform (GNAF). Maintained the architecture and delivered new features while mentoring a team member to take over the project."
@@ -118,6 +120,7 @@ export const resumeData: ResumeData = {
             position: "Front-End Developer & Digital Specialist",
             startDate: "2020",
             endDate: "2022",
+            iconKey: 'code',
             highlights: [
                 [
                     "Honar-e Ashpazi: Developed a Next.js frontend integrated with a headless WordPress CMS, leveraging Incremental Static Regeneration (ISR) to optimize page load speeds and SEO performance."
@@ -133,6 +136,7 @@ export const resumeData: ResumeData = {
             position: "English Teacher",
             startDate: "2019",
             endDate: "2019",
+            iconKey: 'language',
             highlights: [
                 [
                     "Instructed diverse student groups, refining clear communication, presentation, and public speaking skills."

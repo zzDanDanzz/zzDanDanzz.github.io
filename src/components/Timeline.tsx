@@ -1,3 +1,4 @@
+import * as React from "react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -9,6 +10,7 @@ import {
   IconCode,
   IconSparkles,
   IconPlayerPlayFilled,
+  IconLanguage,
 } from "@tabler/icons-react"
 
 // Map specific URLs to details for hover previews
@@ -97,18 +99,21 @@ function InteractiveLink({ text, url }: InteractiveLinkProps) {
 }
 
 export function Timeline() {
-  const getTimelineIcon = (company: string) => {
-    if (company.includes("Map.ir")) {
-      return <IconMapPin className="h-4.5 w-4.5 text-primary" />
-    }
-    if (company.includes("Freelance")) {
-      return <IconCode className="h-4.5 w-4.5 text-blue-500" />
-    }
-    return <IconBriefcase className="h-4.5 w-4.5 text-muted-foreground" />
+  const iconMap: Record<string, React.ReactNode> = {
+    "map-pin": (
+      <IconMapPin className="h-4.5 w-4.5 text-primary md:h-6 md:w-6" />
+    ),
+    code: <IconCode className="h-4.5 w-4.5 text-primary md:h-6 md:w-6" />,
+    language: (
+      <IconLanguage className="h-4.5 w-4.5 text-primary md:h-6 md:w-6" />
+    ),
+    default: (
+      <IconBriefcase className="h-4.5 w-4.5 text-primary md:h-6 md:w-6" />
+    ),
   }
 
   return (
-    <section className="relative mx-auto w-full max-w-5xl px-6 py-16 md:py-24">
+    <section className="relative mx-auto w-full max-w-5xl px-4 py-16 md:py-24">
       {/* Heading */}
       <div className="mb-12 space-y-3 text-center md:text-left">
         <h2 className="bg-linear-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-3xl font-bold tracking-tight md:text-4xl">
@@ -149,15 +154,15 @@ export function Timeline() {
       {/* Timeline Container */}
       <div className="relative pl-4 md:pl-6">
         {/* Glowing Gradient Timeline vertical line */}
-        <div className="absolute top-6 bottom-6 left-5.25 w-0.5 bg-linear-to-b from-primary via-blue-500 to-border/30 md:left-7.25" />
+        <div className="absolute top-6 bottom-6 left-5 w-0.5 bg-linear-to-b from-primary via-blue-500 to-border/30 md:left-8.5" />
 
         {/* Timeline Items */}
         <div className="space-y-12">
           {resumeData.work.map((job) => (
             <div key={job.company} className="group relative pl-12 md:pl-16">
               {/* Timeline Dot */}
-              <div className="absolute top-2 left-0.75 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-border/50 bg-card/85 shadow-md backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:border-primary/50 group-hover:shadow-primary/20 md:left-2.75">
-                {getTimelineIcon(job.company)}
+              <div className="absolute top-2 left-0.75 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-border/50 bg-card/85 shadow-md backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:border-primary/50 group-hover:shadow-primary/20 md:left-2.75 md:h-12 md:w-12">
+                {iconMap[job.iconKey] || iconMap["default"]}
               </div>
 
               {/* Card Container with Frosted Glass Aesthetic */}

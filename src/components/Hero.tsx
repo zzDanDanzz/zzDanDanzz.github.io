@@ -52,7 +52,7 @@ export function Hero() {
                         WebGIS & Frontend Engineer
                       </p>
                     </div>
-                    <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+                    <p className="mx-auto md:mx-0 max-w-md text-sm leading-relaxed text-muted-foreground">
                       Hi, I&apos;m Daniel. I build high-performance WebGIS
                       platforms and interactive spatial applications.
                       Specializing in rendering dense geospatial datasets in
