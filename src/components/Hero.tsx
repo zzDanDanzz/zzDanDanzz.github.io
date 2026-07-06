@@ -7,6 +7,7 @@ import {
   IconBrandTelegram,
   IconBrandGithub,
   IconBrandLinkedin,
+  IconDownload,
 } from "@tabler/icons-react"
 
 export function Hero() {
@@ -17,6 +18,21 @@ export function Hero() {
         <span className="text-lg font-semibold tracking-tight transition-opacity select-none hover:opacity-80">
           zahmatkesh.com
         </span>
+
+        <Button
+          variant="outline"
+          size="sm"
+          className="rounded-full shadow-sm transition-all hover:bg-primary hover:text-primary-foreground"
+          asChild
+        >
+          <a
+            href="/daniel-zahmatkesh-resume.pdf"
+            download="Daniel_Zahmatkesh_Resume.pdf"
+          >
+            <IconDownload className="mr-2 h-4 w-4" />
+            Résumé (PDF)
+          </a>
+        </Button>
       </header>
 
       {/* 2. Main Hero Container */}
