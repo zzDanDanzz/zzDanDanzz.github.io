@@ -13,7 +13,6 @@ import {
   IconLanguage,
 } from "@tabler/icons-react"
 
-// Map specific URLs to details for hover previews
 const hoverPreviews: Record<
   string,
   { title: string; desc: string; img: string }
@@ -155,14 +154,14 @@ export function Timeline() {
       <div>
         <div className="relative">
           {/* Glowing Gradient Timeline vertical line */}
-          <div className="absolute top-6 bottom-6 left-5 w-0.5 bg-linear-to-b from-primary via-blue-500 to-border/30 md:left-8.5" />
+          <div className="absolute top-6 bottom-6 left-5 hidden w-0.5 bg-linear-to-b from-primary via-blue-500 to-border/30 md:left-8.5 md:block" />
 
           {/* Timeline Items */}
           <div className="space-y-12">
             {resumeData.work.map((job) => (
-              <div key={job.company} className="group relative pl-20">
+              <div key={job.company} className="group relative md:pl-20">
                 {/* Timeline Dot */}
-                <div className="absolute top-2 left-0.75 z-10 flex h-9 w-9 transform-gpu items-center justify-center rounded-full border border-border/50 bg-card/85 shadow-md backdrop-blur-md transition-[transform,border-color,box-shadow] duration-300 group-hover:scale-110 group-hover:border-primary/50 group-hover:shadow-primary/20 md:left-2.75 md:h-12 md:w-12">
+                <div className="absolute top-2 left-0.75 z-10 hidden h-9 w-9 transform-gpu items-center justify-center rounded-full border border-border/50 bg-card/85 shadow-md backdrop-blur-md transition-[transform,border-color,box-shadow] duration-300 group-hover:scale-110 group-hover:border-primary/50 group-hover:shadow-primary/20 md:left-2.75 md:flex md:h-12 md:w-12">
                   {iconMap[job.iconKey] || iconMap["default"]}
                 </div>
 
