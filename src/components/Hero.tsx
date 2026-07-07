@@ -14,7 +14,7 @@ export function Hero() {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
       {/* 1. Header */}
-      <header className="sticky top-0 z-50 flex w-full items-center justify-between border-b border-border/20 bg-background/80 px-6 py-6 backdrop-blur-md md:px-12 md:py-8">
+      <header className="sticky top-0 z-50 flex w-full items-center justify-between border-b border-border/60 bg-background/80 px-6 py-6 backdrop-blur-md md:px-12 md:py-8">
         <span className="text-lg font-semibold tracking-tight transition-opacity select-none hover:opacity-80">
           zahmatkesh.com
         </span>
