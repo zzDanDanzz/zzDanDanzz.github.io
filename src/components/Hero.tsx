@@ -22,7 +22,7 @@ export function Hero() {
         <Button
           variant="outline"
           size="sm"
-          className="rounded-full shadow-sm transition-all hover:bg-primary hover:text-primary-foreground"
+          className="rounded-full shadow-sm hover:bg-primary hover:text-primary-foreground"
           asChild
         >
           <a
@@ -40,7 +40,7 @@ export function Hero() {
         <div className="flex w-full max-w-5xl flex-col items-stretch gap-8 md:flex-row md:gap-12 lg:gap-16">
           {/* 3. Left Column - Profile (Enclosed in a Card) */}
           <div className="flex flex-1">
-            <Card className="flex w-full transform-gpu flex-col justify-between overflow-hidden border-border/40 bg-card/60 shadow-xl backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-border/80 hover:shadow-2xl">
+            <Card className="flex w-full flex-col justify-between overflow-hidden border-border/40 bg-card/60 shadow-xl backdrop-blur-xl transition-[border-color,box-shadow] duration-300 hover:border-border/80 hover:shadow-2xl">
               <CardContent className="flex h-full flex-col items-center justify-between gap-6 p-6 text-center md:items-start md:p-8 md:text-left">
                 {/* Avatar & Text section */}
                 <div className="flex w-full flex-col items-center gap-6 md:items-start">
@@ -79,7 +79,7 @@ export function Hero() {
                 <div className="flex w-full justify-center gap-4 border-t border-border/40 pt-4 md:justify-start">
                   <a
                     href="mailto:contact@zahmatkesh.com"
-                    className="rounded-full bg-secondary p-2.5 text-secondary-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
+                    className="rounded-full bg-secondary p-2.5 text-secondary-foreground transition-colors duration-200 hover:bg-primary hover:text-primary-foreground"
                     aria-label="Email"
                     title="Email"
                   >
@@ -89,7 +89,7 @@ export function Hero() {
                     href="https://t.me/DanielZahmatkesh"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full bg-secondary p-2.5 text-secondary-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
+                    className="rounded-full bg-secondary p-2.5 text-secondary-foreground transition-colors duration-200 hover:bg-primary hover:text-primary-foreground"
                     aria-label="Telegram"
                     title="Telegram"
                   >
@@ -99,7 +99,7 @@ export function Hero() {
                     href="https://github.com/zzDanDanzz/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full bg-secondary p-2.5 text-secondary-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
+                    className="rounded-full bg-secondary p-2.5 text-secondary-foreground transition-colors duration-200 hover:bg-primary hover:text-primary-foreground"
                     aria-label="GitHub"
                     title="GitHub"
                   >
@@ -109,7 +109,7 @@ export function Hero() {
                     href="https://www.linkedin.com/in/daniel-zahmatkesh-185288240/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full bg-secondary p-2.5 text-secondary-foreground transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
+                    className="rounded-full bg-secondary p-2.5 text-secondary-foreground transition-colors duration-200 hover:bg-primary hover:text-primary-foreground"
                     aria-label="LinkedIn"
                     title="LinkedIn"
                   >
@@ -134,7 +134,7 @@ export function Hero() {
             <div className="flex w-full flex-col items-center gap-4 md:items-start">
               <Button
                 size="lg"
-                className="w-full cursor-pointer bg-linear-to-r from-blue-600 to-indigo-600 font-medium text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:from-blue-500 hover:to-indigo-500 hover:shadow-indigo-500/20 sm:w-auto"
+                className="w-full cursor-pointer bg-linear-to-r from-blue-600 to-indigo-600 font-medium text-white shadow-lg duration-300 hover:scale-[1.02] hover:from-blue-500 hover:to-indigo-500 hover:shadow-indigo-500/20 sm:w-auto"
               >
                 Launch WebGIS Sandbox PWA
               </Button>

@@ -64,7 +64,7 @@ function InteractiveLink({ text, url }: InteractiveLinkProps) {
         <Link
           to="/"
           search={searchParams}
-          className="group/trigger inline-flex cursor-pointer items-center gap-1 font-semibold text-primary underline decoration-primary/30 underline-offset-4 transition-all duration-200 hover:text-blue-500 hover:decoration-blue-500"
+          className="group/trigger inline-flex cursor-pointer items-center gap-1 font-semibold text-primary underline decoration-primary/30 underline-offset-4 transition-colors duration-200 hover:text-blue-500 hover:decoration-blue-500"
         >
           <span>{text}</span>
           <IconPlayerPlayFilled className="h-2.5 w-2.5 text-primary transition-colors group-hover/trigger:text-blue-500" />
