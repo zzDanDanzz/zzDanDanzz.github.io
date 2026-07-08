@@ -124,10 +124,10 @@ export function Hero() {
           <div className="flex flex-1 flex-col items-center justify-center gap-6 p-6 text-center md:items-start md:text-left">
             <div className="max-w-md space-y-4">
               <h3 className="text-2xl font-bold tracking-tight md:text-3xl">
-                Interactive Geospatial Playground
+                Interactive Flagship App
               </h3>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                A walk through the Safavid Era
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </p>
             </div>
 
@@ -136,7 +136,7 @@ export function Hero() {
                 size="lg"
                 className="w-full cursor-pointer bg-linear-to-r from-blue-600 to-indigo-600 font-medium text-white shadow-lg duration-300 hover:scale-[1.02] hover:from-blue-500 hover:to-indigo-500 hover:shadow-indigo-500/20 sm:w-auto"
               >
-                Launch WebGIS Sandbox PWA
+                Launch Flagship App
               </Button>
 
               {/* Tech Stack Badges */}
