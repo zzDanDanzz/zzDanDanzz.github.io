@@ -2,109 +2,12 @@ import * as React from "react"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { resumeData } from "@/data/resume"
-import { Link } from "@tanstack/react-router"
 import {
   IconMapPin,
   IconCode,
-  IconPlayerPlayFilled,
   IconLanguage,
 } from "@tabler/icons-react"
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card"
 
-const hoverPreviews: Record<
-  string,
-  { title: string; desc: string; img: string }
-> = {
-  "?demo=pdf-export": {
-    title: "Client-Side PDF Export Engine",
-    desc: "Renders dense geospatial layers locally to export high-DPI A3 print sheets without server overhead.",
-    img: "/placeholder.svg",
-  },
-  "?demo=offline-sync": {
-    title: "Offline-First PWA Map Cache",
-    desc: "Uses IndexedDB to cache gigabytes of map data, enabling surveyors to edit geometry in remote zones.",
-    img: "/placeholder.svg",
-  },
-  "?demo=georeference": {
-    title: "Deck.gl CAD Georeferencer",
-    desc: "Achieves sub-pixel alignment of floor plans over satellite basemaps using WebGL translation matrices.",
-    img: "/placeholder.svg",
-  },
-}
-
-// Helper to parse query parameters from the resume URL string
-const getSearchParams = (url: string) => {
-  if (url.startsWith("?")) {
-    const params = new URLSearchParams(url)
-    const result: Record<string, string> = {}
-    params.forEach((value, key) => {
-      result[key] = value
-    })
-    return result
-  }
-  return {}
-}
-
-interface InteractiveLinkProps {
-  text: string
-  url: string
-}
-
-function InteractiveLink({ text, url }: InteractiveLinkProps) {
-  const searchParams = getSearchParams(url)
-  const preview = hoverPreviews[url]
-
-  return (
-    <HoverCard openDelay={200} closeDelay={200}>
-      <HoverCardTrigger asChild>
-        <Link
-          to="/"
-          search={searchParams}
-          className="group/trigger inline-flex cursor-pointer items-center gap-1 font-semibold text-primary underline decoration-primary/30 underline-offset-4 transition-colors duration-200 hover:text-blue-500 hover:decoration-blue-500"
-        >
-          <span>{text}</span>
-          <IconPlayerPlayFilled className="h-2.5 w-2.5 text-primary transition-colors group-hover/trigger:text-blue-500" />
-        </Link>
-      </HoverCardTrigger>
-
-      <HoverCardContent
-        side="top"
-        align="center"
-        sideOffset={12}
-        className="w-80 flex-col gap-2.5 rounded-2xl border border-border/40 bg-card/95 p-3 shadow-2xl backdrop-blur-xl"
-      >
-        <div className="group/image relative mb-2 block h-36 overflow-hidden rounded-lg border border-border/40 bg-muted/50">
-          <img
-            src={preview.img}
-            alt={preview.title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover/image:scale-105"
-          />
-          <span className="absolute inset-0 bg-linear-to-t from-background/90 via-transparent to-transparent" />
-        </div>
-
-        <div className="mb-2 flex flex-col gap-1 text-left">
-          <span className="text-sm font-semibold tracking-tight text-foreground">
-            {preview.title}
-          </span>
-          <span className="text-xs leading-relaxed text-muted-foreground">
-            {preview.desc}
-          </span>
-        </div>
-
-        <div className="flex items-center justify-between border-t border-border/40 pt-2 text-[10px] font-semibold text-primary">
-          <span className="tracking-wider uppercase">Interactive Demo</span>
-          <span className="flex items-center gap-0.5">
-            Launch demo <IconPlayerPlayFilled className="h-2 w-2" />
-          </span>
-        </div>
-      </HoverCardContent>
-    </HoverCard>
-  )
-}
 
 export function Timeline() {
   const iconMap: Record<"map-pin" | "code" | "language", React.ReactNode> = {
@@ -172,24 +75,8 @@ export function Timeline() {
                           key={idx}
                           className="relative pl-6 text-sm leading-relaxed text-muted-foreground"
                         >
-                          {/* Custom bullet dot */}
                           <span className="absolute top-2.25 left-0 h-1.5 w-1.5 rounded-full bg-primary/40 transition-colors group-hover:bg-primary" />
-
-                          <span>
-                            {highlight.map((segment, segIdx) => {
-                              if (typeof segment === "string") {
-                                return <span key={segIdx}>{segment}</span>
-                              } else {
-                                return (
-                                  <InteractiveLink
-                                    key={segIdx}
-                                    text={segment.text}
-                                    url={segment.url}
-                                  />
-                                )
-                              }
-                            })}
-                          </span>
+                          <span>{highlight}</span>
                         </li>
                       ))}
                     </ul>

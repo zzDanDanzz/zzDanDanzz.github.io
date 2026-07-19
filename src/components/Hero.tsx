@@ -1,4 +1,10 @@
-import { Card, CardContent } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -120,49 +126,126 @@ export function Hero() {
             </Card>
           </div>
 
-          {/* 4. Right Column - Call to Action (Floating/No Card) */}
-          <div className="flex flex-1 flex-col items-center justify-center gap-6 p-6 text-center md:items-start md:text-left">
-            <div className="max-w-md space-y-4">
+          {/* 4. Right Column - Featured Projects */}
+          <div className="flex flex-1 flex-col justify-center gap-6 p-6 text-center md:items-start md:p-0 md:pl-6 md:text-left">
+            <div className="space-y-3">
               <h3 className="text-2xl font-bold tracking-tight md:text-3xl">
-                Interactive Flagship App
+                Featured Projects
               </h3>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Open-source engineering tools and interactive WebGIS
+                applications.
               </p>
             </div>
 
-            <div className="flex w-full flex-col items-center gap-4 md:items-start">
-              <Button
-                size="lg"
-                className="w-full cursor-pointer bg-linear-to-r from-blue-600 to-indigo-600 font-medium text-white shadow-lg duration-300 hover:scale-[1.02] hover:from-blue-500 hover:to-indigo-500 hover:shadow-indigo-500/20 sm:w-auto"
-              >
-                Launch Flagship App
-              </Button>
+            <div className="flex w-full flex-col gap-5">
+              {/* Project 1: deckgl-draw */}
+              <Card className="w-full border-border/40 bg-card/60 text-left shadow-lg backdrop-blur-xl transition-[border-color,box-shadow] hover:border-border/80 hover:shadow-xl">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-lg font-bold">
+                    @zzdandanzz/deckgl-draw
+                  </CardTitle>
+                  <CardDescription>
+                    A lightweight, developer-friendly, plug-and-play drawing
+                    library for Deck.gl.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-4">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge
+                      variant="secondary"
+                      className="px-2 py-0.5 text-xs font-semibold"
+                    >
+                      Deck.gl
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="px-2 py-0.5 text-xs font-semibold"
+                    >
+                      React
+                    </Badge>
+                  </div>
+                  <div className="flex gap-3">
+                    <Button size="sm" asChild>
+                      <a
+                        href="https://github.com/zzDanDanzz/deckgl-draw"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Repository
+                      </a>
+                    </Button>
+                    <Button size="sm" variant="outline" asChild>
+                      <a
+                        href="https://www.npmjs.com/package/@zzdandanzz/deckgl-draw"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        NPM
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
 
-              {/* Tech Stack Badges */}
-              <div className="flex flex-wrap items-center justify-center gap-2 pt-2 md:justify-start">
-                <span className="mr-1 text-xs text-muted-foreground">
-                  Built with:
-                </span>
-                <Badge
-                  variant="secondary"
-                  className="px-2.5 py-0.5 text-xs font-semibold"
-                >
-                  Maplibre GL
-                </Badge>
-                <Badge
-                  variant="secondary"
-                  className="px-2.5 py-0.5 text-xs font-semibold"
-                >
-                  Deck.gl
-                </Badge>
-                <Badge
-                  variant="secondary"
-                  className="px-2.5 py-0.5 text-xs font-semibold"
-                >
-                  React
-                </Badge>
-              </div>
+              {/* Project 2: UNESCO Map of Iran */}
+              <Card className="w-full border-border/40 bg-card/60 text-left shadow-lg backdrop-blur-xl transition-[border-color,box-shadow] hover:border-border/80 hover:shadow-xl">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-lg font-bold">
+                    UNESCO Map of Iran
+                  </CardTitle>
+                  <CardDescription>
+                    An interactive web mapping application visualizing World
+                    Heritage Sites using custom image markers and curated data.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-4">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge
+                      variant="secondary"
+                      className="px-2 py-0.5 text-xs font-semibold"
+                    >
+                      MapLibre GL
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="px-2 py-0.5 text-xs font-semibold"
+                    >
+                      Zustand
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="px-2 py-0.5 text-xs font-semibold"
+                    >
+                      React
+                    </Badge>
+                  </div>
+                  <div className="flex gap-3">
+                    <Button
+                      size="sm"
+                      className="bg-linear-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-500 hover:to-indigo-500"
+                      asChild
+                    >
+                      <a
+                        href="https://zzdandanzz.github.io/unesco-map-of-iran/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Live Demo
+                      </a>
+                    </Button>
+                    <Button size="sm" variant="outline" asChild>
+                      <a
+                        href="https://github.com/zzDanDanzz/unesco-map-of-iran"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        GitHub
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
