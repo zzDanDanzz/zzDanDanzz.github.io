@@ -172,26 +172,22 @@ export function Hero() {
                     </Badge>
                   </div>
                   <div className="flex gap-3">
-                    <Button
-                      size="sm"
-                      className="bg-linear-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-500 hover:to-indigo-500"
-                      asChild
-                    >
+                    <Button size="sm" asChild>
                       <a
                         href="https://zahmatkesh.com/unesco-map-of-iran/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Live Demo
+                        Launch App
                       </a>
                     </Button>
-                    <Button size="sm" variant="outline" asChild>
+                    <Button size="sm" variant="link" asChild>
                       <a
                         href="https://github.com/zzDanDanzz/unesco-map-of-iran"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        GitHub
+                        View Repository
                       </a>
                     </Button>
                   </div>
@@ -225,22 +221,13 @@ export function Hero() {
                     </Badge>
                   </div>
                   <div className="flex gap-3">
-                    <Button size="sm" asChild>
+                    <Button size="sm" variant="link" asChild>
                       <a
                         href="https://github.com/zzDanDanzz/deckgl-draw"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         View Repository
-                      </a>
-                    </Button>
-                    <Button size="sm" variant="outline" asChild>
-                      <a
-                        href="https://www.npmjs.com/package/@zzdandanzz/deckgl-draw"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        NPM
                       </a>
                     </Button>
                   </div>
