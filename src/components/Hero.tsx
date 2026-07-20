@@ -178,7 +178,7 @@ export function Hero() {
                       asChild
                     >
                       <a
-                        href="https://zzdandanzz.github.io/unesco-map-of-iran/"
+                        href="https://zahmatkesh.com/unesco-map-of-iran/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
