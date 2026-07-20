@@ -139,56 +139,7 @@ export function Hero() {
             </div>
 
             <div className="flex w-full flex-col gap-5">
-              {/* Project 1: deckgl-draw */}
-              <Card className="w-full border-border/40 bg-card/60 text-left shadow-lg backdrop-blur-xl transition-[border-color,box-shadow] hover:border-border/80 hover:shadow-xl">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-bold">
-                    @zzdandanzz/deckgl-draw
-                  </CardTitle>
-                  <CardDescription>
-                    A lightweight, developer-friendly, plug-and-play drawing
-                    library for Deck.gl.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex flex-col gap-4">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Badge
-                      variant="secondary"
-                      className="px-2 py-0.5 text-xs font-semibold"
-                    >
-                      Deck.gl
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="px-2 py-0.5 text-xs font-semibold"
-                    >
-                      React
-                    </Badge>
-                  </div>
-                  <div className="flex gap-3">
-                    <Button size="sm" asChild>
-                      <a
-                        href="https://github.com/zzDanDanzz/deckgl-draw"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        View Repository
-                      </a>
-                    </Button>
-                    <Button size="sm" variant="outline" asChild>
-                      <a
-                        href="https://www.npmjs.com/package/@zzdandanzz/deckgl-draw"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        NPM
-                      </a>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Project 2: UNESCO Map of Iran */}
+              {/* Project 1: UNESCO Map of Iran */}
               <Card className="w-full border-border/40 bg-card/60 text-left shadow-lg backdrop-blur-xl transition-[border-color,box-shadow] hover:border-border/80 hover:shadow-xl">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-lg font-bold">
@@ -241,6 +192,55 @@ export function Hero() {
                         rel="noopener noreferrer"
                       >
                         GitHub
+                      </a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Project 2: deckgl-draw */}
+              <Card className="w-full border-border/40 bg-card/60 text-left shadow-lg backdrop-blur-xl transition-[border-color,box-shadow] hover:border-border/80 hover:shadow-xl">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-lg font-bold">
+                    @zzdandanzz/deckgl-draw
+                  </CardTitle>
+                  <CardDescription>
+                    A lightweight, developer-friendly, plug-and-play drawing
+                    library for Deck.gl.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-4">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge
+                      variant="secondary"
+                      className="px-2 py-0.5 text-xs font-semibold"
+                    >
+                      Deck.gl
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="px-2 py-0.5 text-xs font-semibold"
+                    >
+                      React
+                    </Badge>
+                  </div>
+                  <div className="flex gap-3">
+                    <Button size="sm" asChild>
+                      <a
+                        href="https://github.com/zzDanDanzz/deckgl-draw"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Repository
+                      </a>
+                    </Button>
+                    <Button size="sm" variant="outline" asChild>
+                      <a
+                        href="https://www.npmjs.com/package/@zzdandanzz/deckgl-draw"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        NPM
                       </a>
                     </Button>
                   </div>
