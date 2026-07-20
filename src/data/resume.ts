@@ -112,7 +112,7 @@ export const resumeData: ResumeData = {
       endDate: "2019",
       iconKey: "language",
       highlights: [
-        "Instructed diverse student groups, refining clear communication, presentation, and public speaking skills.",
+        "Instructed diverse student groups.",
       ],
     },
   ],
