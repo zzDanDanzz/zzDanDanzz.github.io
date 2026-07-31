@@ -57,6 +57,7 @@ export function Hero() {
                       <AvatarImage
                         src="https://github.com/zzdandanzz.png?size=400"
                         alt="Daniel Zahmatkesh"
+                        fetchPriority="high"
                       />
                       <AvatarFallback className="animate-pulse bg-linear-to-br from-indigo-500 to-purple-600 text-2xl font-bold text-white">
                         DZ
