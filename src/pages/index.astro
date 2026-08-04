@@ -1,3 +1,10 @@
+---
+import '@/index.css';
+import { ThemeProvider } from '@/components/theme-provider';
+import { Hero } from '@/components/Hero';
+import { Timeline } from '@/components/Timeline';
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -53,7 +60,11 @@
     />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <ThemeProvider defaultTheme="light" disableTransitionOnChange client:load>
+      <div class="relative flex w-full flex-col bg-background text-foreground transition-colors duration-300">
+        <Hero client:load />
+        <Timeline client:visible />
+      </div>
+    </ThemeProvider>
   </body>
 </html>
