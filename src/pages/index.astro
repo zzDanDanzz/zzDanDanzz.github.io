@@ -4,5 +4,13 @@ import { Hero } from '@/components/Hero';
 ---
 
 <Layout>
+  <Fragment slot="head">
+    <link
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      href="https://github.com/zzdandanzz.png?size=400"
+    />
+  </Fragment>
   <Hero client:load />
 </Layout>
