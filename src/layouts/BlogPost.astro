@@ -1,0 +1,21 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+const { frontmatter } = Astro.props;
+---
+<Layout title={`${frontmatter.title} | Daniel's Blog`} description={frontmatter.description}>
+  <main class="max-w-3xl mx-auto px-6 py-12 w-full prose dark:prose-invert">
+    <a href="/posts" class="text-primary hover:underline transition-colors block mb-8">&larr; Back to Posts</a>
+    <h1 class="text-4xl font-bold tracking-tight mb-4">{frontmatter.title}</h1>
+    <time class="text-sm text-muted-foreground mb-8 block">
+      {new Date(frontmatter.publishDate).toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })}
+    </time>
+    <div class="mt-8 leading-relaxed">
+      <slot />
+    </div>
+  </main>
+</Layout>

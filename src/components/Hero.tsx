@@ -18,29 +18,7 @@ import {
 
 export function Hero() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground transition-colors duration-300">
-      {/* 1. Header */}
-      <header className="sticky top-0 z-50 flex w-full items-center justify-between border-b border-border/60 bg-background/80 px-6 py-6 backdrop-blur-md md:px-12 md:py-8">
-        <span className="text-lg font-semibold tracking-tight transition-opacity select-none hover:opacity-80">
-          zahmatkesh.com
-        </span>
-
-        <Button
-          variant="outline"
-          size="sm"
-          className="rounded-full shadow-sm hover:bg-primary hover:text-primary-foreground"
-          asChild
-        >
-          <a
-            href="/daniel-zahmatkesh-resume.pdf"
-            download="Daniel_Zahmatkesh_Resume.pdf"
-          >
-            <IconDownload className="mr-2 h-4 w-4" />
-            Résumé (PDF)
-          </a>
-        </Button>
-      </header>
-
+    <div className="flex flex-1 flex-col bg-background text-foreground transition-colors duration-300">
       {/* 2. Main Hero Container */}
       <main className="flex flex-1 items-center justify-center px-6 py-12 md:px-12 md:py-20 lg:py-24">
         <div className="flex w-full max-w-5xl flex-col items-stretch gap-8 md:flex-row md:gap-12 lg:gap-16">

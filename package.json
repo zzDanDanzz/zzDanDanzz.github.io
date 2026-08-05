@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^7.0.5",
     "@astrojs/react": "^6.0.2",
     "@deck.gl/mapbox": "^9.3.7",
     "@tabler/icons-react": "^3.46.0",

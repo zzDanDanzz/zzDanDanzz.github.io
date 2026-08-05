@@ -1,0 +1,179 @@
+---
+title: "My First Live Coding Experience: Potato Brain and the Re-render Trap!"
+publishDate: 2026-08-05
+description: "My experience from my first live coding interview, the mistakes I made optimizing React, and the lessons I learned."
+---
+
+# My First Live Coding Experience: Potato Brain and the Re-render Trap!
+
+The first time you do anything, it’s always memorable. So, I decided to write a little something about my first live coding interview.
+
+We started out with a very lightweight `App.tsx` file—just 43 lines in total. The instructions were straightforward: _"Optimize it."_
+
+The code I was given looked like this:
+
+```tsx
+import { type FC, type PropsWithChildren, useEffect, useState } from "react";
+
+export default function App() {
+    const [tick, setTick] = useState(0);
+    const [item, setItem] = useState(0);
+
+    useEffect(() => {
+        setInterval(() => setTick((t) => t + 1), 500);
+    }, []);
+
+    const items = [
+        { text: "Button 1" },
+        { text: "Button 2" },
+        { text: "Button 3" },
+        { text: "Button 4" },
+    ];
+
+    return (
+        <>
+            <div>tick: {tick}</div>
+            <div>item: {item}</div>
+            {items.map((item, i) => (
+                <Button key="{i}">{item.text}</Button>
+            ))}
+        </>
+    );
+}
+
+const Button: FC<PropsWithChildren<{ onClick?:> void }>> = ({
+    onClick,
+    children,
+}) => {
+    return <button onClick={onClick}>{children}</button>;
+};
+
+```
+
+### Trap #1: "Look at the Big Brain on Me!" and Dodging the Core Problem
+
+The very first thing that caught my eye made me think, _"Wow, aren't I smart!"_ I noticed the `setInterval` didn't have a cleanup function for when the component unmounts. Plus, in development mode with React Strict Mode enabled, it fires twice. So, I quickly added the cleanup.
+
+Next, I looked at the two states defined at the top. One of them, `tick`, was updating every 500 milliseconds. Because I have a habit of obsessing over the KISS (Keep It Simple, Stupid) principle, I thought to myself: _"The main issue here is that the rest of the function body and the JSX—which don't even rely on `tick`—are needlessly re-rendering every time it changes."_
+
+From that moment on, my brain stubbornly latched onto one idea. I was convinced I needed to extract the element rendering `tick`, along with its `useState` and `useEffect`, into its own isolated component. That way, it could re-render as much as it wanted without dragging the rest of the app down with it (State Colocation).
+
+But the interviewer stopped me: _"Hold on a second, don't get too attached to that solution. Imagine you aren't allowed to define those two states anywhere else. The goal is to optimize exactly what is rendering right here and prevent unnecessary re-renders."_
+
+### Hint #1: `React.memo` and the Potato Brain Phenomenon
+
+The first hint they gave me was to use `React.memo`. I quickly wrapped the `Button` component, and boom—our re-rendering issue was solved! But the interviewer replied: _"The interview isn't over yet. I want you to hook up `setItem` so that when a button is clicked, our `item` state becomes the index of that specific button."_
+
+This is the exact moment my brain turned into a potato.
+
+Because I was still internally stuck on my previous idea of component extraction and state colocation, I was just throwing out random theories. When it came to actually writing the code, my mind had completely locked up.
+
+I went down to the `Button` component, added an `onClick` prop, and passed it an inline arrow function that called `setItem` with the button's index. We also threw a `console.log` into the Button component to see what would happen.
+
+Surprise, surprise! Because the arrow function creates a brand-new function reference every single time the parent component (`App`) renders, `React.memo` looked at the new reference, assumed the prop had changed, and went ahead and re-rendered all the buttons anyway!
+
+### Hint #2: Caching and the Over-Engineering Phase
+
+At this point, my brain had officially flatlined, and I couldn't come up with a proper solution. The interviewer dropped a hint about caching. So, I jumped in and defined a `useCallback`, which eventually led us to this monstrosity:
+
+```tsx
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useCallback } from "react";
+import { type FC, type PropsWithChildren, useEffect, useState } from "react";
+
+const btnCallbacks = [];
+
+export default function App() {
+    const [tick, setTick] = useState(0);
+    const [item, setItem] = useState(0);
+
+    useEffect(() => {
+        const id = setInterval(() => setTick((t) => t + 1), 500);
+        return () => {
+            clearInterval(id);
+        };
+    }, []);
+
+    const items = [
+        { text: "Button 1" },
+        { text: "Button 2" },
+        { text: "Button 3" },
+        { text: "Button 4" },
+    ];
+
+    const changeItem = useCallback((index: number) => {
+        const cb = btnCallbacks[index];
+        if (cb) {
+            return cb;
+        }
+        const newCb = () => setItem(index);
+        btnCallbacks[index] = newCb;
+        return newCb;
+    }, []);
+
+    return (
+        <>
+            <div>tick: {tick}</div>
+            <div>item: {item}</div>
+            {items.map((item, i) => (
+                <Button key="{i}" onClick="{()"> changeItem(i)}>
+                    {item.text}
+                </Button>
+            ))}
+        </>
+    );
+}
+
+const _Button: FC<PropsWithChildren<{ onClick?:> void }>> = ({
+    onClick,
+    children,
+}) => {
+    console.log("RENDERING BUTTON");
+    return <button onClick={onClick}>{children}</button>;
+};
+
+const Button = React.memo(_Button);
+
+```
+
+This was pure over-engineering. Actually, earlier in the session, I even tried defining a `Map` in the module scope to store the callbacks! The interviewer understandably asked, _"Why a `Map`? We aren't deleting items, so why didn't you just use a plain object?"_
+
+I didn't really have a good answer. Subconsciously, I remembered reading somewhere that SWR uses a `Map` for its internal cache, so I just blindly went with it. While `Map` is more optimized for highly dynamic structures with lots of additions and deletions, it was a terrible idea to spontaneously try using it in the middle of a live coding session without being comfortable with it.
+
+### The Final Solution: Thinking Outside the Box
+
+Finally, the interviewer nudged me: _"Can you think outside the box for a second? Is there really no other way to solve this?"_
+
+In my panic, I had completely forgotten that over my years of working with React, I've passed thousands of props in a million different ways. I could literally just pass `setItem` itself as a prop!
+
+Instead of jumping through hoops, all I needed to do was pass `setItem` and `index` straight to the button, and handle the execution inside the Button component:
+
+```tsx
+// Updating the render section in App.tsx:
+{items.map((item, i) => (
+    <Button index="{i}" key="{i}" setItem="{setItem}">
+        {item.text}
+    </Button>
+))}
+
+// Updating the Button component:
+const _Button: FC<PropsWithChildren<{ (idx: index: number; setItem:> void }>> = ({
+    index,
+    setItem,
+    children,
+}) => {
+    console.log("RENDERING BUTTON");
+    return <button onClick={() => setItem(index)}>{children}</button>;
+};
+
+const Button = React.memo(_Button);
+
+```
+
+Because `index` is a primitive number, and `setItem` has a stable reference provided directly by `useState`, `React.memo` easily recognizes that nothing has changed.
+
+It was such a ridiculously simple solution, and I felt a bit silly for not seeing it from the very beginning!
+
+### The Takeaway...
+
+It was a fascinating experience, and I'm honestly glad I had this interview because I learned a lot from it. I feel much better about live coding interviews now. I know that with a little more practice, some experience, and remembering to just _stay calm_, it's possible to have a much more successful run.
