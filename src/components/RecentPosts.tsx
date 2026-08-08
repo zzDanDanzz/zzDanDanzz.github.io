@@ -26,7 +26,7 @@ export const RecentPosts = ({ posts }: { posts: BlogPost[] }) => {
     <section className="w-full">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-4">
         <h1 className="bg-linear-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-3xl font-bold tracking-tight md:text-4xl">
-          Posts
+          Blog
         </h1>
         <div className="flex gap-2 p-1 bg-muted/50 rounded-lg w-fit">
           <button

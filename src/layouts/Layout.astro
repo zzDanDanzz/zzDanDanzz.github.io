@@ -11,10 +11,13 @@ const {
     title = "Daniel's Portfolio",
     description = "Portfolio of Daniel Zahmatkesh, a Lead Front-End Developer specializing in React, complex state management, and geospatial web platforms.",
 } = Astro.props;
+
+const locale = Astro.currentLocale || 'en';
+const dir = locale === 'fa' ? 'rtl' : 'ltr';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale} dir={dir}>
     <head>
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -25,6 +28,14 @@ const {
             type="font/woff2"
             crossorigin
         />
+        <script is:inline>
+            const theme = localStorage.getItem('theme') || 'light';
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
         <slot name="head" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
@@ -64,7 +75,7 @@ const {
         <div
             class="relative flex w-full flex-col bg-background text-foreground transition-colors duration-300 min-h-screen"
         >
-            <Header client:load />
+            <Header locale={locale} currentPath={Astro.url.pathname} client:load />
             <slot />
         </div>
     </body>

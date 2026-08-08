@@ -1,0 +1,15 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { RecentPosts } from '@/components/RecentPosts';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf());
+---
+<Layout title="Blog | Daniel's Portfolio">
+  <main class="flex flex-col items-center px-6 py-12 md:py-20 lg:py-24">
+    <div class="w-full max-w-3xl">
+      <RecentPosts posts={sortedPosts} client:visible />
+    </div>
+  </main>
+</Layout>

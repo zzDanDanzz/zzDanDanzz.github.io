@@ -172,3 +172,8 @@
         text-align: left !important;
     }
 }
+
+html[dir="rtl"] .lang-en { display: none !important; }
+html[dir="ltr"] .lang-fa { display: none !important; }
+html:not([dir]) .lang-fa { display: none !important; } /* default to EN if no dir */
+

@@ -13,10 +13,16 @@ import {
   IconBrandTelegram,
   IconBrandGithub,
   IconBrandLinkedin,
-  IconDownload,
 } from "@tabler/icons-react"
+import { translations } from '@/lib/store'
 
-export function Hero() {
+interface HeroProps {
+  locale?: string;
+}
+
+export function Hero({ locale = 'en' }: HeroProps) {
+  const t = translations[locale as keyof typeof translations] || translations.en;
+  
   return (
     <div className="flex flex-1 flex-col bg-background text-foreground transition-colors duration-300">
       {/* 2. Main Hero Container */}
@@ -34,7 +40,7 @@ export function Hero() {
                     <Avatar className="h-32 w-32 border-2 border-background shadow-lg transition-transform duration-300 group-hover:scale-[1.02] md:h-40 md:w-40">
                       <AvatarImage
                         src="https://github.com/zzdandanzz.png?size=400"
-                        alt="Daniel Zahmatkesh"
+                        alt={t.hero.title}
                         fetchPriority="high"
                       />
                       <AvatarFallback className="animate-pulse bg-linear-to-br from-indigo-500 to-purple-600 text-2xl font-bold text-white">
@@ -47,15 +53,14 @@ export function Hero() {
                   <div className="w-full space-y-3">
                     <div className="space-y-1">
                       <h2 className="bg-linear-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-3xl font-bold tracking-tight">
-                        Daniel Zahmatkesh
+                        {t.hero.title}
                       </h2>
                       <p className="text-sm font-semibold tracking-widest text-primary/90 uppercase">
-                        Lead Front-End Developer
+                        {t.hero.subtitle}
                       </p>
                     </div>
-                    <p className="mx-auto max-w-md text-sm leading-relaxed text-muted-foreground md:mx-0">
-                      Specializing in high-performance React applications,
-                      complex state management, and geospatial web platforms.
+                    <p className="mx-auto max-w-md text-sm leading-relaxed text-muted-foreground md:mx-0 text-balance">
+                      {t.hero.description}
                     </p>
                   </div>
                 </div>
@@ -109,11 +114,10 @@ export function Hero() {
           <div className="flex flex-1 flex-col justify-center gap-6 p-6 text-center md:items-start md:p-0 md:pl-6 md:text-left">
             <div className="space-y-3">
               <h3 className="text-2xl font-bold tracking-tight md:text-3xl">
-                Featured Projects
+                {t.hero.featuredProjects}
               </h3>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                Open-source engineering tools and interactive WebGIS
-                applications.
+                {t.hero.featuredProjectsDesc}
               </p>
             </div>
 
@@ -157,7 +161,7 @@ export function Hero() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Launch App
+                        {t.hero.launchApp}
                       </a>
                     </Button>
                     <Button size="sm" variant="link" asChild>
@@ -166,7 +170,7 @@ export function Hero() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        View Repository
+                        {t.hero.viewRepo}
                       </a>
                     </Button>
                   </div>
@@ -206,7 +210,7 @@ export function Hero() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        View Repository
+                        {t.hero.viewRepo}
                       </a>
                     </Button>
                   </div>
